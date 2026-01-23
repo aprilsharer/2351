@@ -18,7 +18,7 @@ function demonstrateScopes() {
     
     const userProfile = {
         name: "May",
-        age: 34,
+        age: 34node index.js,
         city: "Austin"
     };
     
