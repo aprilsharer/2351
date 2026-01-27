@@ -1,12 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Candy Rating System</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script src="./app.js"></script>
+    <div class="container">
+        <h1>Candy Rating System</h1>
+        
+        <div class="input-section">
+            <input type="text" id="candyName" placeholder="Candy name">
+            <input type="number" id="candyRating" placeholder="Rating 1-10" min="1" max="10">
+            <input type="text" id="candyType" placeholder="Type">
+            <button id="addBtn">Add Candy</button>
+        </div>
+
+        <div class="stats">
+            <h2>Stats</h2>
+            <p id="totalCandies">Total Candies: 0</p>
+            <p id="avgRating">Average Rating: 0</p>
+            <p id="topCandy">Top Rated: None</p>
+        </div>
+
+        <div class="candy-list">
+            <h2>My Candies</h2>
+            <div id="candyDisplay"></div>
+        </div>
+
+        <button id="clearBtn">Clear All</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    color: #555;
+    margin-top: 20px;
+}
+
+.input-section {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #999;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+#clearBtn {
+    width: 100%;
+    margin-top: 20px;
+    background: #f44336;
+}
+
+#clearBtn:hover {
+    background: #da190b;
+}
+
+.stats {
+    background: #e8e8e8;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.stats p {
+    margin: 8px 0;
+}
+
+.candy-list {
+    margin-bottom: 20px;
+}
+
+.candy-card {
+    background: #fafafa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.candy-card h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.candy-card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.rating-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #4CAF50;
+    color: white;
+    margin-top: 5px;
+}
