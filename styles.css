@@ -1,97 +1,118 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    margin: 0;
     padding: 20px;
 }
 
 .container {
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
-    background: white;
+    background-color: white;
     padding: 20px;
     border: 1px solid #ccc;
 }
 
 h1 {
-    text-align: center;
     color: #333;
+    text-align: center;
 }
 
 h2 {
     color: #555;
-    margin-top: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
 }
 
-.input-section {
-    margin-bottom: 20px;
+.form-section {
+    margin-bottom: 30px;
 }
 
-input {
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
-    border: 1px solid #999;
-    font-size: 14px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 button {
-    padding: 10px 20px;
-    background: #4CAF50;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 button:hover {
-    background: #45a049;
+    background-color: #45a049;
 }
 
-#clearBtn {
-    width: 100%;
+.results {
     margin-top: 20px;
-    background: #f44336;
 }
 
-#clearBtn:hover {
-    background: #da190b;
-}
-
-.stats {
-    background: #e8e8e8;
+#output {
+    background-color: #f9f9f9;
     padding: 15px;
-    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    min-height: 100px;
 }
 
-.stats p {
+#output p {
     margin: 8px 0;
 }
 
-.candy-list {
-    margin-bottom: 20px;
-}
-
-.candy-card {
-    background: #fafafa;
-    padding: 15px;
+.error {
+    background-color: #ffcccc;
+    color: #cc0000;
+    padding: 10px;
+    border: 1px solid #cc0000;
     margin-bottom: 10px;
-    border: 1px solid #ddd;
 }
 
-.candy-card h3 {
-    margin: 0 0 10px 0;
-    color: #333;
+/* NEW STYLES for candy list section */
+.candy-list-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #ddd;
 }
 
-.candy-card p {
+.name-list {
+    list-style: none;
+    padding: 0;
+}
+
+.name-list li {
+    padding: 10px;
     margin: 5px 0;
-    color: #666;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.rating-badge {
-    display: inline-block;
-    padding: 5px 10px;
-    background: #4CAF50;
-    color: white;
-    margin-top: 5px;
+.name-list li:hover {
+    background-color: #e0e0e0;
+}
+
+.list-input {
+    margin-bottom: 10px;
+}
+
+/* Class that gets toggled when button is clicked */
+.change {
+    color: lightblue;
+    font-size: 400px;
+    border: 10px solid black;
 }

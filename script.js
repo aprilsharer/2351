@@ -1,156 +1,185 @@
-const candyDatabase = {
-    candies: [],
-    totalCandies: 0,
+// Candy analyzer project
 
-    addCandy: function(name, rating, type) {
-        const newCandy = {
-            name: name,
-            rating: rating,
-            type: type,
-            dateAdded: new Date().toLocaleDateString()
-        };
-        this.candies.push(newCandy);
-        this.totalCandies++;
-        return newCandy;
-    },
+// Get elements from HTML
+const text = document.querySelector('.title');
+const analyzeBtn = document.getElementById('analyzeBtn');
 
-    getAverage: function() {
-        if (this.candies.length === 0) {
-            return 0;
-        }
-        let sum = 0;
-        for (let i = 0; i < this.candies.length; i++) {
-            sum = sum + this.candies[i].rating;
-        }
-        return sum / this.candies.length;
-    },
+// You can change the style of elements
+text.style.color = 'purple';
 
-    getTopRated: function() {
-        if (this.candies.length === 0) {
-            return null;
-        }
-        let top = this.candies[0];
-        for (let i = 1; i < this.candies.length; i++) {
-            if (this.candies[i].rating > top.rating) {
-                top = this.candies[i];
-            }
-        }
-        return top;
-    },
+// Event listener for analyze button
+analyzeBtn.addEventListener('click', analyzeCandy);
 
-    clearAll: function() {
-        this.candies = [];
-        this.totalCandies = 0;
+function analyzeCandy() {
+    // Get the values from the form
+    const userName = document.getElementById('userName').value;
+    const candyName = document.getElementById('candyName').value;
+    const candyPrice = document.getElementById('candyPrice').value;
+    const candyType = document.getElementById('candyType').value;
+
+    // Check if all fields are filled (if conditional)
+    if (!userName || !candyName || !candyPrice || !candyType) {
+        showError('Please fill out all fields!');
+        return;
     }
-};
 
-function checkInput(name, rating, type) {
-    if (name === '' || rating === '' || type === '') {
-        return false;
+    // Check if price is valid (if conditional)
+    if (parseFloat(candyPrice) <= 0) {
+        showError('Price must be greater than zero!');
+        return;
     }
-    if (rating < 1 || rating > 10) {
-        return false;
-    }
-    return true;
-}
 
-function fixName(name) {
-    let words = name.split(' ');
-    let result = '';
-    for (let i = 0; i < words.length; i++) {
-        let word = words[i];
-        let fixed = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        result = result + fixed;
-        if (i < words.length - 1) {
-            result = result + ' ';
-        }
-    }
-    return result;
-}
+    // CONCATENATED STRING - combining multiple variables into one string
+    const greeting = 'Hello ' + userName + '! ';
+    const info = 'Your favorite candy is ' + candyName + ' and it costs $' + candyPrice + '.';
+    const message = greeting + info;
+    
+    console.log(message);
 
-function makeCard(candy) {
-    const card = document.createElement('div');
-    card.className = 'candy-card';
+    // STRING METHODS
+    const upperCaseName = candyName.toUpperCase();
+    const lowerCaseName = candyName.toLowerCase();
+    const nameLength = candyName.length;
     
-    const name = document.createElement('h3');
-    name.textContent = candy.name;
-    
-    const type = document.createElement('p');
-    type.textContent = 'Type: ' + candy.type;
-    
-    const date = document.createElement('p');
-    date.textContent = 'Added: ' + candy.dateAdded;
-    
-    const badge = document.createElement('span');
-    badge.className = 'rating-badge';
-    badge.textContent = candy.rating + '/10';
-    
-    card.appendChild(name);
-    card.appendChild(type);
-    card.appendChild(date);
-    card.appendChild(badge);
-    
-    return card;
-}
+    console.log('Uppercase:', upperCaseName);
+    console.log('Lowercase:', lowerCaseName);
+    console.log('Length:', nameLength);
 
-function showCandies() {
-    const display = document.getElementById('candyDisplay');
-    display.innerHTML = '';
+    // NUMBER METHODS
+    const price = parseFloat(candyPrice);
+    const fixedPrice = price.toFixed(2);
+    const tenPieces = price * 10;
+    const tenPiecesFixed = tenPieces.toFixed(2);
     
-    for (let i = 0; i < candyDatabase.candies.length; i++) {
-        const card = makeCard(candyDatabase.candies[i]);
-        display.appendChild(card);
-    }
-    
-    updateStats();
-}
+    console.log('Price:', fixedPrice);
+    console.log('Ten pieces cost:', tenPiecesFixed);
 
-function updateStats() {
-    document.getElementById('totalCandies').textContent = 'Total Candies: ' + candyDatabase.totalCandies;
-    
-    const avg = candyDatabase.getAverage();
-    document.getElementById('avgRating').textContent = 'Average Rating: ' + avg.toFixed(2);
-    
-    const top = candyDatabase.getTopRated();
-    if (top) {
-        document.getElementById('topCandy').textContent = 'Top Rated: ' + top.name + ' (' + top.rating + '/10)';
+    // IF/ELSE CONDITIONAL for price category
+    let priceCategory = '';
+    if (price < 1.00) {
+        priceCategory = 'Budget candy';
+    } else if (price >= 1.00 && price < 2.00) {
+        priceCategory = 'Average price';
     } else {
-        document.getElementById('topCandy').textContent = 'Top Rated: None';
+        priceCategory = 'Premium candy';
+    }
+
+    // SWITCH STATEMENT for candy type
+    let typeInfo = '';
+    let suggestions = '';
+    
+    switch(candyType) {
+        case 'chocolate':
+            typeInfo = 'Chocolate candy';
+            suggestions = 'You might also like: Hershey bars, Kit Kats';
+            break;
+        case 'gummy':
+            typeInfo = 'Gummy candy';
+            suggestions = 'You might also like: Gummy bears, Sour worms';
+            break;
+        case 'hard':
+            typeInfo = 'Hard candy';
+            suggestions = 'You might also like: Jolly Ranchers, Lifesavers';
+            break;
+        case 'sour':
+            typeInfo = 'Sour candy';
+            suggestions = 'You might also like: Sour Patch Kids, Warheads';
+            break;
+        case 'licorice':
+            typeInfo = 'Licorice candy';
+            suggestions = 'You might also like: Twizzlers, Red Vines';
+            break;
+        default:
+            typeInfo = 'Other candy';
+            suggestions = 'Try exploring different candy types!';
+    }
+
+    // Toggle a class on the button when clicked
+    analyzeBtn.classList.toggle('change');
+
+    // Display results
+    showResults(message, upperCaseName, nameLength, fixedPrice, tenPiecesFixed, priceCategory, typeInfo, suggestions);
+}
+
+function showResults(message, upperName, length, price, bulk, category, type, suggestions) {
+    const output = document.getElementById('output');
+    
+    let html = '<p><strong>Your Info:</strong> ' + message + '</p>';
+    html += '<p><strong>Candy Name (uppercase):</strong> ' + upperName + '</p>';
+    html += '<p><strong>Name has ' + length + ' letters</strong></p>';
+    html += '<p><strong>Price:</strong> $' + price + '</p>';
+    html += '<p><strong>Ten pieces:</strong> $' + bulk + '</p>';
+    html += '<p><strong>Price Category:</strong> ' + category + '</p>';
+    html += '<p><strong>Type:</strong> ' + type + '</p>';
+    html += '<p><strong>Suggestions:</strong> ' + suggestions + '</p>';
+    
+    output.innerHTML = html;
+    
+    // CHANGE CSS BASED ON VARIABLE VALUE (for rubric requirement)
+    // Change the background color based on price
+    const priceValue = parseFloat(price);
+    
+    if (priceValue < 1.00) {
+        output.style.backgroundColor = '#d4edda'; // light green for budget
+        output.style.borderColor = '#28a745';
+    } else if (priceValue >= 1.00 && priceValue < 2.00) {
+        output.style.backgroundColor = '#fff3cd'; // light yellow for average
+        output.style.borderColor = '#ffc107';
+    } else {
+        output.style.backgroundColor = '#f8d7da'; // light red for premium
+        output.style.borderColor = '#dc3545';
     }
 }
 
-function clearInputs() {
-    document.getElementById('candyName').value = '';
-    document.getElementById('candyRating').value = '';
-    document.getElementById('candyType').value = '';
+function showError(message) {
+    const output = document.getElementById('output');
+    output.innerHTML = '<div class="error">' + message + '</div>';
 }
 
-document.getElementById('addBtn').addEventListener('click', function() {
-    const nameInput = document.getElementById('candyName').value;
-    const ratingInput = document.getElementById('candyRating').value;
-    const typeInput = document.getElementById('candyType').value;
+// LOOPS - Working with the candy list
+const userList = document.querySelector('.name-list');
+const userListItems = document.querySelectorAll('.name-list li');
+
+// Loop through each list item and add click event
+for (let user of userListItems) {
+    user.addEventListener('click', function() {
+        // Change the color when you click on a candy
+        this.style.color = 'red';
+        console.log(this);
+    });
+}
+
+// ADD NEW CANDY TO LIST
+const listInput = document.querySelector('.list-input');
+const addListButton = document.querySelector('.add-list-button');
+
+addListButton.addEventListener('click', function() {
+    // Create a new li element
+    const newLi = document.createElement('li');
     
-    if (!checkInput(nameInput, ratingInput, typeInput)) {
-        alert('Please fill all fields correctly');
-        return;
-    }
+    // Create the text content from the input
+    const liContent = document.createTextNode(listInput.value);
     
-    const fixedName = fixName(nameInput);
-    const ratingNumber = parseFloat(ratingInput);
+    // Attach the content to the li
+    newLi.appendChild(liContent);
     
-    candyDatabase.addCandy(fixedName, ratingNumber, typeInput);
-    showCandies();
-    clearInputs();
+    // Attach the li to the user list
+    userList.appendChild(newLi);
+    
+    // Add click event to the new item too
+    newLi.addEventListener('click', function() {
+        this.style.color = 'red';
+        console.log(this);
+    });
+    
+    // Clear the input
+    listInput.value = '';
 });
 
-document.getElementById('clearBtn').addEventListener('click', function() {
-    if (candyDatabase.totalCandies === 0) {
-        alert('No candies to clear');
-        return;
-    }
-    
-    candyDatabase.clearAll();
-    showCandies();
-});
-
-updateStats();
+// EXAMPLE OF A WHILE LOOP - count candy loading
+let loading = 0;
+while (loading < 5) {
+    console.log('Loading candy #' + loading);
+    loading++;
+}
+console.log('All candies loaded!');
