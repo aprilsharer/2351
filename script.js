@@ -115,8 +115,7 @@ function showResults(message, upperName, length, price, bulk, category, type, su
     
     output.innerHTML = html;
     
-    // CHANGE CSS BASED ON VARIABLE VALUE (for rubric requirement)
-    // Change the background color based on price
+
     const priceValue = parseFloat(price);
     
     if (priceValue < 1.00) {
@@ -148,6 +147,19 @@ for (let user of userListItems) {
         console.log(this);
     });
 }
+//MODULE 6 ADDITION
+const candyCollection = {
+    owner: 'My Collection',
+    rating: 5,
+    favorites: ['Snickers', 'KitKat', 'Reeses'],
+    describe: function() {
+        console.log(this.owner + ' has ' + this.favorites.length + ' favorites');
+    }
+};
+
+candyCollection.describe();
+candyCollection.favorites.push('Skittles');
+console.log(candyCollection.favorites.indexOf('KitKat'));
 
 // ADD NEW CANDY TO LIST
 const listInput = document.querySelector('.list-input');
